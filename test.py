@@ -1,39 +1,50 @@
 import socket
 import time
 
-def main():
-    # Server details (change to match your real IP or DNS if not localhost)
-    server = "irc.example.org"
-    port = 6667
-    nickname = "PyBot123"
-    realname = "Python IRC Bot"
-    channel = "#Help"
+# Configuration
+server = "10.20.238.213"      # IRC server IP or hostname
+port = 6667                   # Use 6697 for TLS with SSL
+nickname = "MyBot"
+username = "mybot"
+realname = "Python IRC Bot"
+channel = "#Test"             # Channel must start with '#'
 
-    # Create a socket connection
-    irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    irc.connect((server, port))
+# Create and connect socket
+irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+irc.connect((server, port))
 
-    # IRC Login: USER and NICK
-    irc.send(f"NICK {nickname}\r\n".encode())
-    irc.send(f"USER {nickname} 0 * :{realname}\r\n".encode())
+# Send NICK and USER to register
+irc.send(f"NICK {nickname}\r\n".encode("utf-8"))
+irc.send(f"USER {username} 0 * :{realname}\r\n".encode("utf-8"))
 
-    # Join the channel after login
-    time.sleep(5)  # Wait for server to process login
-    irc.send(f"JOIN {channel}\r\n".encode())
+# Join the channel after registration
+joined = False
 
-    # Simple loop to respond to pings and print messages
+try:
     while True:
-        response = irc.recv(2048).decode("utf-8", errors="ignore").strip()
-        print(response)
+        resp = irc.recv(2048).decode("utf-8", errors="ignore")
+        print(resp)
 
-        if response.startswith("PING"):
-            # Respond to server PINGs to stay connected
-            pong_reply = response.replace("PING", "PONG")
-            irc.send(f"{pong_reply}\r\n".encode())
+        # Respond to server PINGs
+        if resp.startswith("PING"):
+            irc.send(f"PONG {resp.split()[1]}\r\n".encode("utf-8"))
 
-        # Optionally, respond to a chat command like "!hello"
-        if "PRIVMSG" in response and "!hello" in response:
-            sender = response.split("!")[0][1:]
-            irc.send(f"PRIVMSG {channel} :Hello, {sender}!\r\n".encode())
+        # Wait for either end of MOTD (376) or no MOTD (422)
+        if (" 376 " in resp or " 422 " in resp) and not joined:
+            irc.send(f"JOIN {channel}\r\n".encode("utf-8"))
+            time.sleep(1)
+            irc.send(f"MODE {channel} +nt\r\n".encode("utf-8"))
+            joined = True
 
-main()
+        # If someone sends a message to the channel
+        if f"PRIVMSG {channel}" in resp:
+            sender = resp.split("!")[0][1:]
+            message = ':'.join(resp.split(':')[2:]).strip()
+            print(f"{sender}: {message}")
+
+            # Respond with a Hello
+            irc.send(f"PRIVMSG {channel} :Hello\r\n".encode("utf-8"))
+
+except KeyboardInterrupt:
+    print("Disconnected.")
+    irc.close()
