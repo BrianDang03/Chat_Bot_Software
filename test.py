@@ -4,7 +4,7 @@ import time
 # Configuration
 server = "10.20.238.213"      # IRC server IP or hostname
 port = 6667                   # Use 6697 for TLS with SSL
-nickname = "MyBot"
+nickname = "ChatBot"
 username = "mybot"
 realname = "Python IRC Bot"
 channel = "#Test"             # Channel must start with '#'
