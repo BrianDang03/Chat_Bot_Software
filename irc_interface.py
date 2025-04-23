@@ -1,8 +1,17 @@
 import socket
 import time
+from gpt_connect import askGPT 
 
 def TalkToClient(server, port, channel):
+    """
+    Resizes all images in a folder to the specified dimensions, overwriting the originals.
     
+    Parameters:
+    - server: should be an IP Address  
+    - port: should be a port number
+    - channel: #name channel to connect to  
+    """
+
     # Configuration
     nickname = "ChatBot"
     username = "chatbot"
@@ -40,9 +49,10 @@ def TalkToClient(server, port, channel):
                 sender = resp.split("!")[0][1:]
                 message = ':'.join(resp.split(':')[2:]).strip()
                 print(f"{sender}: {message}")
-
-                # Respond with a Hello
-                irc.send(f"PRIVMSG {channel} :Hello\r\n".encode("utf-8"))
+                                                  
+                # Respond with a response message
+                responseMsg = "Hello There"
+                irc.send(f"PRIVMSG {channel} :{responseMsg}\r\n".encode("utf-8"))
 
     except KeyboardInterrupt:
         print("Disconnected.")
