@@ -1,16 +1,13 @@
 import socket
 import time
 
-def TalkToClient():
+def TalkToClient(server, port, channel):
     
     # Configuration
-    server = "10.20.239.122"      # IRC server IP or hostname
-    port = 6667                   # Use 6697 for TLS with SSL
     nickname = "ChatBot"
-    username = "mybot"
+    username = "chatbot"
     realname = "Python IRC Bot"
-    channel = "#mychan"             # Channel must start with '#'
-
+                 
     # Create and connect socket
     irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     irc.connect((server, port))
