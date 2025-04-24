@@ -1,5 +1,8 @@
 from irc_interface import TalkToClient
 
 def main():
-    TalkToClient("10.20.239.122", 6667, "#mychan")
+    ipAddress = input("Enter IP Address: ")
+    portNumber = input("Enter Port Number: ")
+    channel = input ("Enter a Channel: ")
+    TalkToClient(ipAddress, str(portNumber), channel)
 main()

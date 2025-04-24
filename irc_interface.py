@@ -1,6 +1,6 @@
 import socket
 import time
-from gpt_connect import askGPT 
+from gpt_connect import GPTPrompter 
 
 def TalkToClient(server, port, channel):
     """
@@ -16,6 +16,7 @@ def TalkToClient(server, port, channel):
     nickname = "ChatBot"
     username = "chatbot"
     realname = "Python IRC Bot"
+    prompter = GPTPrompter()
                  
     # Create and connect socket
     irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -49,9 +50,11 @@ def TalkToClient(server, port, channel):
                 sender = resp.split("!")[0][1:]
                 message = ':'.join(resp.split(':')[2:]).strip()
                 print(f"{sender}: {message}")
-                                                  
+
+                # Send and Receive to GPT
+                responseMsg = prompter.askGPT(message)
+
                 # Respond with a response message
-                responseMsg = "Hello There"
                 irc.send(f"PRIVMSG {channel} :{responseMsg}\r\n".encode("utf-8"))
 
     except KeyboardInterrupt:

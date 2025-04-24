@@ -3,15 +3,11 @@ from openai import OpenAI
 import time
 
 """
-
 prompter = GPTPrompter()
 answer = prompter.askGPT("Hi Chatbot, why do you exist?")
 print(answer)
 
-
 """
-
-
 
 class GPTPrompter:
     
