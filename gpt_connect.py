@@ -22,15 +22,16 @@ class GPTPrompter:
 
     def askGPT(self, input_text):
         if (time.time() - self.lReq > self.COOLDOWN and self.requestCount < self.MAX_REQUESTS):
-                response = self.client.responses.create(
+                response = self.client.chat.completions.create(
                 model="gpt-4o-mini",
-                instructions="Be helpful, respond in less than four sentences",
-                input=input_text,
+                messages=[
+                    {"role": "system", "content": "Be helpful, respond in less than four sentences"},
+                    {"role": "user", "content": input_text}
+                ],
                 )
                 self.lReq = time.time()
                 self.requestCount+=1
-                return response.output_text
+                return response.choices[0].message.content
         else:
             self.lReq = time.time()
             return None
-
