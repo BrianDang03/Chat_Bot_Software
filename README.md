@@ -5,12 +5,10 @@ Create a Chat Bot that connects to IRC Server to talk in a group chat of IRC cli
 ## Table of Contents
 <details>
   <summary>Click Me!</summary>
-  
-- [Overview](#overview)
+
 - [Tools and Technologies](#tools-and-technologies)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Acknowledgments](#acknowledgments)
 
 </details>
 
