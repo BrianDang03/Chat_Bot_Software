@@ -57,7 +57,7 @@ python main.py
 
 5. Run the mIRC Client, add a server to connect to with the same IP and Port Number. Then Connect.
 
-6. On the mIRC Client Type join the same channel as the Chat Bot and have a conversation.     
+6. On the mIRC Client join the same channel as the Chat Bot and type something to have a conversation.     
 
 ---
 
