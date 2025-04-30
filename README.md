@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 2. Go to the terminal and type ipconfig and look for the IPv4 Address. This will be the IP address you will use to connect the mIRC client and Chat Bot to the UnrealIRCd server. 
 
-3.  Run the main.py file.
+3.  Add your own apikey.txt to the directory, Run the main.py file.
 ```
 python main.py
 ```
