@@ -1,6 +1,6 @@
 # Chat_Bot_Software
 
-Create a Chat Bot that connects to IRC Server to talk in a group chat of clients 
+Create a Chat Bot that connects to IRC Server to talk in a group chat of IRC clients. 
 
 ## Table of Contents
 <details>
