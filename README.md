@@ -20,13 +20,16 @@ Create a Chat Bot that connects to IRC Server to talk in a group chat of clients
 ## Tools and Technologies
 - **Programming Language**: Python
 - **Libraries**: openai
-- **IRC Server**: [mIRC](https://www.mirc.com/)
+- **IRC Client**: [mIRC](https://www.mirc.com/)
+- **IRC Server**: [UnrealIRCd](https://www.unrealircd.org/download/6.0) 
 
 ---
 
 ## Installation
 1. Create a new directory or folder.
-2. Use Github Desktop or git clone to pull the repository to the new directory or folder.
+2. Install the mIRC Client.
+3. Install the UrealIRCd.
+4. Use Github Desktop or git clone to pull the repository to the new directory or folder.
 ```
 git clone https://github.com/BrianDang03/Chat_Bot_Software.git
 ```
@@ -39,3 +42,18 @@ cd Chat_Bot_Software
 pip install -r requirements.txt
 ```
 ---
+
+## Usage
+
+1. After successfully installing dependencies, change to the src directory.
+```
+cd src
+```
+
+2.  Run the main.py file.
+```
+python main.py
+```
+
+---
+
