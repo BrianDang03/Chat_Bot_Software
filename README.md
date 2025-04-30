@@ -10,7 +10,6 @@ Create a Chat Bot that connects to IRC Server to talk in a group chat of clients
 - [Tools and Technologies](#tools-and-technologies)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Features](#features)
 - [Acknowledgments](#acknowledgments)
 
 </details>
@@ -45,15 +44,20 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. After successfully installing dependencies, change to the src directory.
-```
-cd src
-```
+1. After successfully installing IRC client, IRC server, and dependencies, execute the UnrealIRCd.
 
-2.  Run the main.py file.
+2. Go to the terminal and type ipconfig and look for the IPv4 Address. This will be the IP address you will use to connect the mIRC client and Chat Bot to the UnrealIRCd server. 
+
+3.  Run the main.py file.
 ```
 python main.py
 ```
+
+4. Type in the IP Address, a Port number of 6667, and a channel to join.
+
+5. Run the mIRC Client, add a server to connect to with the same IP and Port Number. Then Connect.
+
+6. On the mIRC Client Type join the same channel as the Chat Bot and have a conversation.     
 
 ---
 
